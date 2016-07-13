@@ -35,7 +35,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 
 /**
  *
- * @author jitus_000
+ * @author Jitendra Singh
+ * This is class whcih has methods used to read .xsl & .xlsx file, write test result to an .xls, file.
  */
 public class ExcelReadStringArrayXSL {
     private String mFilePath;
@@ -48,6 +49,20 @@ public class ExcelReadStringArrayXSL {
 	private String[][] mExcelStringArray;
 	private String mWorksheetName;
 	
+	/**
+ 	  * Constructor to make an object of ExcelReadStringArrayXSL                            
+          * 
+          * This constructor gives back an ExcelReadStringArrayXSL object  
+          * 
+          * 
+          * this objects give you access to 6 different methods whcih are described in their respective sections
+          * 
+          *
+          * @param  excelFilePath : file path to excel file which has data for input .
+          * @param  worksheetName : name of the sheet which has the data set
+          * @return ExcelReadStringArrayXSL object
+          */
+	 
 	public ExcelReadStringArrayXSL(String excelFilePath, String worksheetName) throws FileNotFoundException,Exception{
 		mFilePath = excelFilePath;
 		mWorksheetName = worksheetName;
@@ -77,17 +92,19 @@ public class ExcelReadStringArrayXSL {
 		}
 		
 	}
-	
+	// returns int : the row length of the excel sheet
 	public int getRowLenght(){
 		mTotalRowSourceFile = mHssfSheet.getLastRowNum() + 1;
 		return mTotalRowSourceFile;
 	} 
 	
+	//returns int : the column lenght of the excel sheet
 	public int getColumnLenght(){
 		mTotalColSourceFile = mHssfSheet.getRow(0).getLastCellNum();
 		return mTotalColSourceFile;
 	}
 	
+	//returns String[][] : two dimension array of string which will be the data input for testing
 	public String[][] getExcelStringArray() throws Exception{
 		if(mHssfSheet!=null){
 		mExcelStringArray = new String[getRowLenght()][getColumnLenght()];
@@ -111,7 +128,12 @@ public class ExcelReadStringArrayXSL {
 			throw new Exception("Worksheet with name "+mWorksheetName+ " does not exist in "+mFilePath);
 		}
 	}
-	
+      
+       /*
+	*@param cell : HSSFCell object from the excel sheet 
+	*returns String : Returns a String object from HSSFCell object
+	*this method gracefully handles different types of Cell type 
+	*/
 	public String convertCellToString(HSSFCell cell){
 		int type;
 		if(cell == null){
@@ -146,6 +168,12 @@ public class ExcelReadStringArrayXSL {
 		}
 		return result.toString();
 	}
+	
+	/*This method makes an .xls file after getting input data array, and output test result
+	 *@param input : 2 dimension String array consisting of data input for testing
+	 *@param outputResult : 1 dimension String array consisting of test data output
+	 *@param filePath : String object having filePath of the file where output .xls file will be saved
+	 */
         public void setOutputSingletResult(String[][]inputData, String[] outputResult, String filePath){
             String[][] outputResultTwoDimensionArray;
             outputResultTwoDimensionArray = new String[inputData.length][inputData[0].length + 1];
@@ -200,6 +228,12 @@ public class ExcelReadStringArrayXSL {
                 }
                 
         }
+        
+        /*This method makes .xsl file after getting input data array, and output test result
+         *@param inputData : String[][] 2 Dimension array which is basically the input test data,
+         *@param outputResult : String[][] 2 Dimension array which is basically the output of the input test data
+         *@param filePath : String object which has file path to where ,xsl file will be stored
+         */
         
         public void setOutputResult(String[][]inputData, String[][] outputResult, String filePath){
         String[][] outputResultTwoDimensionArray;
