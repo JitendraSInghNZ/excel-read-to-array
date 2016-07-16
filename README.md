@@ -7,3 +7,5 @@ pass the following parameters of the method and it stores an excel file with bot
 pass the following parameters of the method and it stores an excel file with both input and output in one file in a destination path
 
 The excel_read_to_array_0.02.jar file is in dist folder. In your favourite IDE just import this external .jar file and make it use :-) 
+
+A complete video on How to use this API can be found on the link https://www.youtube.com/playlist?list=PLC5A_d190b3ej_3iTW-rYWxCTSC3w-NFi
