@@ -248,9 +248,9 @@ public class ExcelReadStringArrayXSL {
             for(int i = 0; i < outputResultTwoDimensionArray.length; i++){
                 for(int j = 0 ; j < outputResultTwoDimensionArray[i].length;j++){
                     if(j >= (outputResultTwoDimensionArray[i].length - outputResult[i].length)){
-                        for(int k = j; k < outputResultTwoDimensionArray[i].length; k++){
-                            outputResultTwoDimensionArray[i][j] = outputResult[i][k-(outputResultTwoDimensionArray[i].length - outputResult[i].length)];
-                        }
+                        
+                            outputResultTwoDimensionArray[i][j] = outputResult[i][j-(outputResultTwoDimensionArray[i].length - outputResult[i].length)];
+                        
                     }
                     else
                         outputResultTwoDimensionArray[i][j] = inputData[i][j];                  
